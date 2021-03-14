@@ -1,5 +1,9 @@
 # web framework
 django
 
+# storage
+django-storages
+boto3
+
 # config
 python-dotenv
