@@ -27,7 +27,7 @@ def audio_upload(request):
     return render(
         request,
         'upload.html',
-        {'form' : form}
+        {'form': form}
     )
 
 

@@ -11,6 +11,7 @@ def validate_file_extension(fileobj):
         Format must be one of [{", ".join(settings.ALLOWED_AUDIO_EXTENSIONS)}].
         """)
 
+
 def validate_file_size(fileobj):
     if fileobj.size > settings.MAX_UPLOAD_SIZE:
         raise ValidationError(
