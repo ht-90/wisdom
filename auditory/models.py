@@ -11,7 +11,7 @@ class Audio(models.Model):
         default=uuid.uuid4,
         editable=False,
     )
-    name = models.CharField(max_length=50) 
+    name = models.CharField(max_length=50)
     audiofile = models.FileField(
         upload_to='',
         validators=[
