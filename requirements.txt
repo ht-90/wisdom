@@ -1,5 +1,15 @@
 # web framework
 django
 
+# storage
+django-storages
+boto3
+
 # config
 python-dotenv
+
+# testing
+tox
+
+# linter
+flake8
