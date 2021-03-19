@@ -16,17 +16,14 @@ class Audio(models.Model):
         max_length=50,
         blank=False,
         null=True,
-        verbose_name="Audio name",
     )
     description = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Audio description",
     )
     thumbnail = models.ImageField(
         upload_to="thumbnail",
         null=True,
-        verbose_name="Audio thumbnail",
     )
     audiofile = models.FileField(
         upload_to='audio',
