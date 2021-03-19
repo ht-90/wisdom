@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
+from .models import Audio
 from .forms import UploadFileForm
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = "index.html"
+    model = Audio
 
 
 class AuditoriumView(TemplateView):

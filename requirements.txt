@@ -5,6 +5,9 @@ django
 django-storages
 boto3
 
+# image processor
+Pillow
+
 # config
 python-dotenv
 
