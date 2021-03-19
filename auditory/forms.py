@@ -6,4 +6,4 @@ from .models import Audio
 class UploadFileForm(forms.ModelForm):
     class Meta:
         model = Audio
-        fields = ["name", "audiofile"]
+        fields = ["name", "thumbnail", "audiofile"]
