@@ -30,9 +30,7 @@ jobs:
       # Execute linter
       - name: Tox lint
         run: |
-            tox -e lintenv:
-        env:
-          SYSTEM_ENV: cicd
+            tox -e lintenv
   
   test:
     name: Test
@@ -56,6 +54,5 @@ jobs:
       # Execute test
       - name: Tox test
         run: |
+            export SYSTEM_ENV=cicd
             tox -e test
-        env:
-          SYSTEM_ENV: cicd
