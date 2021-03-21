@@ -13,6 +13,7 @@ python-dotenv
 
 # testing
 tox
+coverage
 
 # linter
 flake8
