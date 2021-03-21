@@ -20,12 +20,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - run:
-        - name: Install tox
-        - command: |
+      - name: Install tox
+      - run: |
             pip -m install --upgrade pip
             pip install tox tox-gh-actions
-      - run:
-        - name: Tox lint
-        - command: |
+      - name: Tox lint
+      - run: |
             tox -e lint
