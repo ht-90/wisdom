@@ -31,8 +31,18 @@ if os.path.isfile(dotenv_file):
 
 
 # Update secret key and debug mode
-SECRET_KEY = os.environ['SECRET_KEY']
-DEBUG = os.environ['DEBUG']
+SYSTEM_ENV = os.environ["SYSTEM_ENV"]
+
+if SYSTEM_ENV == "production" or SYSTEM_ENV == "development":
+    SECRET_KEY = os.environ['SECRET_KEY']
+    DEBUG = os.environ['DEBUG']
+
+elif SYSTEM_ENV == "cicd":
+    DEBUG = True
+    SECRET_KEY = "CICD_KEY"
+
+else:
+    ValueError("SYSTEM_ENV variable is not set or set to an unacceptable value")
 
 ALLOWED_HOSTS = []
 
@@ -127,7 +137,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Audio file storage
-if DEBUG == "False":
+if SYSTEM_ENV == "production":
     # Cloud storage
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
@@ -135,7 +145,8 @@ if DEBUG == "False":
     AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
     AWS_S3_REGION_NAME = os.environ["AWS_S3_REGION_NAME"]
     AWS_DEFAULT_ACL = os.environ["AWS_DEFAULT_ACL"]
-else:
+
+elif SYSTEM_ENV == "development" or SYSTEM_ENV == "cicd":
     # Local storage
     MEDIA_URL = '/media/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
