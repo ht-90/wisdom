@@ -53,7 +53,7 @@ jobs:
             pip install tox tox-gh-actions
       # Execute test
       - name: Tox test
-        run: |
-            tox -e test
         env:
             SYSTEM_ENV: "cicd"
+        run: |
+            tox -e test
