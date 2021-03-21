@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 import uuid
 
 from .validators import validate_file_extension, validate_file_size
