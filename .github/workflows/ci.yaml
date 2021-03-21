@@ -54,6 +54,6 @@ jobs:
       # Execute test
       - name: Tox test
         env:
-            SYSTEM_ENV: "cicd"
+            ENV: "cicd"
         run: |
             tox -e test
