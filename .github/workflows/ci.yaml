@@ -1,0 +1,31 @@
+name: wisdom-ci
+
+on:
+  push:
+    branches: [main, develop, github-action]
+  pull_request:
+    branches: [main, develop, github-action]
+
+jobs:
+
+  lint:
+    name: Lint python code
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python ${{ matrix.python-version }}
+      - uses: actions/checkout@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run:
+        - name: Install tox
+        - command: |
+            pip -m install --upgrade pip
+            pip install tox tox-gh-actions
+      - run:
+        - name: Tox lint
+        - command: |
+            tox -e lint
