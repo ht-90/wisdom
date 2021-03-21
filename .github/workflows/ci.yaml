@@ -9,7 +9,7 @@ on:
 jobs:
 
   lint:
-    name: Lint python code
+    name: Linter
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -33,7 +33,7 @@ jobs:
             tox -e lint
   
   test:
-    name: test
+    name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
