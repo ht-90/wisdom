@@ -127,11 +127,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Audio file storage
-if DEBUG == "True":
-    # Local storage
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-else:
+if DEBUG == "False":
     # Cloud storage
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
@@ -139,6 +135,10 @@ else:
     AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
     AWS_S3_REGION_NAME = os.environ["AWS_S3_REGION_NAME"]
     AWS_DEFAULT_ACL = os.environ["AWS_DEFAULT_ACL"]
+else:
+    # Local storage
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Audio file limitation
 ALLOWED_AUDIO_EXTENSIONS = [
