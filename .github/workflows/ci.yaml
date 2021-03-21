@@ -15,15 +15,19 @@ jobs:
       matrix:
         python-version: [3.9]
     steps:
+      # Checkout repository
       - uses: actions/checkout@v1
+      # Setup python
       - name: Set up Python ${{ matrix.python-version }}
-      - uses: actions/checkout@v2
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      # Install dependecies
       - name: Install tox
-      - run: |
+        run: |
             pip -m install --upgrade pip
             pip install tox tox-gh-actions
+      # Execute linter
       - name: Tox lint
-      - run: |
+        run: |
             tox -e lint
