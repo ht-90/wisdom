@@ -1,7 +1,9 @@
 # web framework
 django
+dj-database-url
 
-# storage
+# database / storage
+psycopg2
 django-storages
 boto3
 
