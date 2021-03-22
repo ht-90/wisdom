@@ -39,7 +39,7 @@ jobs:
       matrix:
         python-version: [3.9]
     env:
-      ENV: "cicd"
+      SYSTEM_ENV: "cicd"
     steps:
       # Checkout repository
       - uses: actions/checkout@v1
