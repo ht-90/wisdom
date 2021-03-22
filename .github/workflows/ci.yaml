@@ -38,6 +38,8 @@ jobs:
     strategy:
       matrix:
         python-version: [3.9]
+    env:
+      ENV: "cicd"
     steps:
       # Checkout repository
       - uses: actions/checkout@v1
@@ -53,7 +55,5 @@ jobs:
             pip install tox tox-gh-actions
       # Execute test
       - name: Tox test
-        env:
-            ENV: "cicd"
         run: |
             tox -e test
