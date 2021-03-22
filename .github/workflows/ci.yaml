@@ -39,7 +39,7 @@ jobs:
       matrix:
         python-version: [3.9]
     env:
-      SYSTEM_ENV: "cicd"
+      SYSTEM_ENV: ${{ secrets.SYSTEM_ENV }}
     steps:
       # Checkout repository
       - uses: actions/checkout@v1
@@ -54,7 +54,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install tox tox-gh-actions
       - name: Log env vars
-        run: >-
+        run: |
           env
       # Execute test
       - name: Tox test
