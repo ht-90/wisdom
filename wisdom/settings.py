@@ -101,7 +101,7 @@ if SYSTEM_ENV == "production" or SYSTEM_ENV == "development":
 elif SYSTEM_ENV == 'cicd':
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',,
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'postgres',
             'USER': 'postgres',
             'PASSWORD': 'password',
