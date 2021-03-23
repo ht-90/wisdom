@@ -31,8 +31,18 @@ if os.path.isfile(dotenv_file):
 
 
 # Update secret key and debug mode
-SECRET_KEY = os.environ['SECRET_KEY']
-DEBUG = os.environ['DEBUG']
+SYSTEM_ENV = os.environ["SYSTEM_ENV"]
+
+if SYSTEM_ENV == "production" or SYSTEM_ENV == "development":
+    SECRET_KEY = os.environ['SECRET_KEY']
+    DEBUG = os.environ['DEBUG']
+
+elif SYSTEM_ENV == "cicd":
+    DEBUG = True
+    SECRET_KEY = "CICD_KEY"
+
+else:
+    KeyError("SYSTEM_ENV variable is not set or set to an unacceptable value")
 
 ALLOWED_HOSTS = []
 
@@ -83,9 +93,22 @@ WSGI_APPLICATION = 'wisdom.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600),
-}
+if SYSTEM_ENV == "production" or SYSTEM_ENV == "development":
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600),
+    }
+
+elif SYSTEM_ENV == 'cicd':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'password',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
@@ -127,11 +150,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Audio file storage
-if DEBUG == "True":
-    # Local storage
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-else:
+if SYSTEM_ENV == "production":
     # Cloud storage
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
@@ -139,6 +158,11 @@ else:
     AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
     AWS_S3_REGION_NAME = os.environ["AWS_S3_REGION_NAME"]
     AWS_DEFAULT_ACL = os.environ["AWS_DEFAULT_ACL"]
+
+elif SYSTEM_ENV == "development" or SYSTEM_ENV == "cicd":
+    # Local storage
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Audio file limitation
 ALLOWED_AUDIO_EXTENSIONS = [
