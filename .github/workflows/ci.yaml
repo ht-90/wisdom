@@ -2,9 +2,9 @@ name: wisdom-ci
 
 on:
   push:
-    branches: [main, develop, github-action]
+    branches: [ main, develop, github-action ]
   pull_request:
-    branches: [main, develop, github-action]
+    branches: [ main, develop, github-action ]
 
 jobs:
 
@@ -33,6 +33,7 @@ jobs:
           tox -e lint
   
   test:
+    # Setup database
     services:
       db:
         image: postgres
@@ -47,6 +48,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.9]
+    # Set environmental variables from Github secrets
     env:
       SYSTEM_ENV: ${{ secrets.SYSTEM_ENV }}
     steps:
