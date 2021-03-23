@@ -2,9 +2,9 @@ name: wisdom-ci
 
 on:
   push:
-    branches: [ main, develop, github-action ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop, github-action ]
+    branches: [ main, develop ]
 
 jobs:
 
