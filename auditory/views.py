@@ -6,8 +6,8 @@ from .models import Audio
 from .forms import UploadFileForm
 
 
-class IndexView(ListView):
-    template_name = "index.html"
+class HomeView(ListView):
+    template_name = "home.html"
     model = Audio
 
 

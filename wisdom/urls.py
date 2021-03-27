@@ -15,8 +15,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+from django.contrib.auth.decorators import login_required
+
+from registration.views import SignUpView, UserActivationView
+from auditory.views import HomeView, audio_upload, success
 
 urlpatterns = [
+    # Admin
     path('admin/', admin.site.urls),
-    path('', include('auditory.urls')),
+    # Registration app
+    path('', include("django.contrib.auth.urls")),
+    path('', login_required(HomeView.as_view())),
+    path('signup/', SignUpView.as_view(), name="signup"),
+    path('activate/<uidb64>/<token>/', UserActivationView.as_view(), name="activate"),
+    # Auditory app
+    path('home/', HomeView.as_view(), name="home"),
+    path('upload/', audio_upload, name='upload'),
+    path('success/', success, name='success'),
 ]
+
+# Add media storage paths
+if settings.DEBUG == "True":
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )

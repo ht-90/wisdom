@@ -44,12 +44,24 @@ elif SYSTEM_ENV == "cicd":
 else:
     KeyError("SYSTEM_ENV variable is not set or set to an unacceptable value")
 
-ALLOWED_HOSTS = []
+if SYSTEM_ENV == "production" or SYSTEM_ENV == "development":
+    SECRET_KEY = os.environ['SECRET_KEY']
+    DEBUG = os.environ['DEBUG']
+
+elif SYSTEM_ENV == "cicd":
+    DEBUG = True
+    SECRET_KEY = "CICD_KEY"
+
+else:
+    KeyError("SYSTEM_ENV variable is not set or set to an unacceptable value")
+
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,6 +69,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'auditory',
+    'anymail',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +88,7 @@ ROOT_URLCONF = 'wisdom.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -148,6 +162,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 
 # Audio file storage
 if SYSTEM_ENV == "production":
@@ -175,3 +191,28 @@ ALLOWED_AUDIO_EXTENSIONS = [
 ]
 
 MAX_UPLOAD_SIZE = 10485760  # 10MB
+
+# User registration
+AUTH_USER_MODEL = 'registration.User'
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login/"
+
+# Email
+ANYMAIL = {
+    "MAILGUN_API_KEY": os.environ["MAILGUN_API"],
+    "MAILGUN_SENDER_DOMAIN": os.environ["MAILGUN_DOMAIN"]
+}
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+DEFAULT_FROM_EMAIL = "example@test.com"
+SERVER_EMAIL = "server@test.com"
+
+SIGNUP_EMAIL_SUBJECT = "Wisdom: user account confirmation"
+SIGNUP_MESSAGE_TEMPLATE = """
+Thank you for signing up for Wisdom!
+Please click the link below to activate your account :)
+
+"""
+
+FRONTEND_URL = "http://127.0.0.1:8000"
