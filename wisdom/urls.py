@@ -16,7 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.contrib.auth.decorators import login_required
+
+from registration.views import SignUpView, UserActivationView
+from auditory.views import IndexView, audio_upload, success
+
 urlpatterns = [
+    # Admin
     path('admin/', admin.site.urls),
-    path('', include('auditory.urls')),
+    # Registration app
+    path('', include("django.contrib.auth.urls")),
+    path('', login_required(IndexView.as_view())),
+    path('signup/', SignUpView.as_view(), name="signup"),
+    path('activate/<uidb64>/<token>/', UserActivationView.as_view(), name="activate"),
+    # Auditory app
+    path('home/', IndexView.as_view(), name="home"),
+    path('upload/', audio_upload, name='upload'),
+    path('success/', success, name='success'),
 ]
