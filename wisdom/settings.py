@@ -191,7 +191,7 @@ LOGOUT_REDIRECT_URL = "/login/"
 # Email
 ANYMAIL = {
     "MAILGUN_API_KEY": os.environ["MAILGUN_API"],
-    "MAILGUN_SENDER_DOMAIN": os.environ["MAILGUN_DOMAIN"] 
+    "MAILGUN_SENDER_DOMAIN": os.environ["MAILGUN_DOMAIN"]
 }
 EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 DEFAULT_FROM_EMAIL = "example@test.com"

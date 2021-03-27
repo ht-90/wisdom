@@ -1,10 +1,6 @@
-from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.conf import settings
-
-from django.http import request
-
 
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
@@ -39,12 +35,14 @@ class SignUpForm(UserCreationForm):
 
         return user
 
+
 def get_activate_url(user):
     # Encode username and generate token
     uid = urlsafe_base64_encode(force_bytes(user.pk))
     token = default_token_generator.make_token(user)
 
     return settings.FRONTEND_URL + "/activate/{}/{}/".format(uid, token)
+
 
 def activate_user(uidb64, token):
     # Find user in database
