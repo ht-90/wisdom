@@ -44,6 +44,17 @@ elif SYSTEM_ENV == "cicd":
 else:
     KeyError("SYSTEM_ENV variable is not set or set to an unacceptable value")
 
+if SYSTEM_ENV == "production" or SYSTEM_ENV == "development":
+    SECRET_KEY = os.environ['SECRET_KEY']
+    DEBUG = os.environ['DEBUG']
+
+elif SYSTEM_ENV == "cicd":
+    DEBUG = True
+    SECRET_KEY = "CICD_KEY"
+
+else:
+    KeyError("SYSTEM_ENV variable is not set or set to an unacceptable value")
+
 ALLOWED_HOSTS = ["*"]
 
 
