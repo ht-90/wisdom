@@ -8,18 +8,20 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link
+      href="https://unpkg.com/@fortawesome/fontawesome-free@5.13.0/css/all.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     {% include '_navbar.html' %}
     <section class="section">
       <div class="container">
         <div class="columns is-centered">
-          <div class="column has-text-centered">
-            {% block main %}
-            <p>No Content Here ;;</p>
-            {% endblock %}
-          </div>
+          {% block main %}
+          <p>No Content Here ;;</p>
+          {% endblock %}
         </div>
       </div>
     </section>

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block main %}
+  {% if result %}
+  <p>Your email has been confirmed!</p>
+  <p><a href="{% url 'login' %}">Log in</a></p>
+  {% else %}
+  <p>Page not found...</p>
+  {% endif %}
+{% endblock %}
