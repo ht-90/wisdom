@@ -1,6 +1,8 @@
 # web framework
 django
 dj-database-url
+django-anymail[mailgun]
+django-widget-tweaks
 
 # database / storage
 psycopg2
