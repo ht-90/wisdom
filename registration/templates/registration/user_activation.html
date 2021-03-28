@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block main %}
+<div class="column has-text-centered is-half">
   {% if result %}
-  <p>Your email has been confirmed!</p>
-  <p><a href="{% url 'login' %}">Log in</a></p>
+  <p class="title is-5">Your email has been confirmed!</p>
+  <p class="button is-light"><a href="{% url 'login' %}">Go to Log In page</a></p>
   {% else %}
   <p>Page not found...</p>
   {% endif %}
+</div>
 {% endblock %}
