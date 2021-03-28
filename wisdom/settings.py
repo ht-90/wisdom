@@ -162,7 +162,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 # Audio file storage
@@ -215,4 +215,7 @@ Please click the link below to activate your account :)
 
 """
 
-FRONTEND_URL = "http://127.0.0.1:8000"
+if SYSTEM_ENV == "production":
+    FRONTEND_URL = "https://wisdom-app.herokuapp.com"
+else:
+    FRONTEND_URL = "http://127.0.0.1:8000"

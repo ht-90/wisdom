@@ -9,6 +9,9 @@ psycopg2
 django-storages
 boto3
 
+# web server
+gunicorn
+
 # image processor
 Pillow
 
