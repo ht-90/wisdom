@@ -216,6 +216,6 @@ Please click the link below to activate your account :)
 """
 
 if SYSTEM_ENV == "production":
-    FRONTEND_URL = "https://wisdom-app.herokuapp.com/"
+    FRONTEND_URL = "https://wisdom-app.herokuapp.com"
 else:
     FRONTEND_URL = "http://127.0.0.1:8000"
