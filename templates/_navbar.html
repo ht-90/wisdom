@@ -4,13 +4,8 @@
   </div>
   <div class="navbar-end">
     {% if not user.is_authenticated %}
-      {% if request.get_full_path != '/login/' %}
-        {% if request.get_full_path != '/signup/' %}
-        <a class="navbar-item" href="{% url 'signup' %}">Sign Up</a>
-        <a class="navbar-item" href="{% url 'login' %}">Log In</a>
-        {% endif %}
-        <a class="navbar-item" href="{% url 'login' %}">Log In</a>
-      {% endif %}
+    <a class="navbar-item" href="{% url 'signup' %}">Sign Up</a>
+    <a class="navbar-item" href="{% url 'login' %}">Log In</a>
     {% else %}
     <a class="navbar-item" href="{% url 'logout' %}">Log Out</a>
     {% endif %}
