@@ -11,8 +11,9 @@ class HomeView(ListView):
     model = Audio
 
 
-class AuditoriumView(TemplateView):
+class AuditoriumView(ListView):
     template_name = "auditorium.html"
+    model = Audio
 
 
 def audio_upload(request):
