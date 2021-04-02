@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
 
 from registration.views import SignUpView, UserActivationView
-from auditory.views import HomeView, audio_upload, success
+from auditory.views import HomeView, audio_upload, success, AuditoriumView
 
 urlpatterns = [
     # Admin
@@ -35,6 +35,7 @@ urlpatterns = [
     path('home/', HomeView.as_view(), name="home"),
     path('upload/', audio_upload, name='upload'),
     path('success/', success, name='success'),
+    path('auditorium/<str:id>', AuditoriumView.as_view(), name="auditorium"),
 ]
 
 # Add media storage paths
