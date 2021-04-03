@@ -15,6 +15,15 @@ class AuditoriumView(ListView):
     template_name = "auditorium.html"
     model = Audio
 
+    def get_queryset(self):
+        """Filter audio object by audio id"""
+        return Audio.objects.filter(uuid=self.kwargs["id"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["other_audios"] = Audio.objects.exclude(uuid=self.kwargs["id"]).all()
+        return context
+
 
 def audio_upload(request):
     if request.method == 'POST':
