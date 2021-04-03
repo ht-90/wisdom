@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views.generic import ListView
 
 from .models import Audio
@@ -47,4 +46,4 @@ def audio_upload(request):
 
 
 def success(request):
-    return HttpResponse('successfully uploaded')
+    return render(request, "upload_success.html")
