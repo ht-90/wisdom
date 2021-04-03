@@ -18,7 +18,8 @@ class Audio(models.Model):
         blank=False,
         null=True,
     )
-    description = models.TextField(
+    description = models.CharField(
+        max_length=200,
         blank=True,
         null=True,
     )
