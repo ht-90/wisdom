@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 from django.contrib.auth.decorators import login_required
 
-from registration.views import SignUpView, UserActivationView
+from registration.views import SignUpView, UserActivationView, EmailConfirmationView
 from auditory.views import HomeView, audio_upload, success, AuditoriumView
 
 urlpatterns = [
@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include("django.contrib.auth.urls")),
     path('', login_required(HomeView.as_view())),
     path('signup/', SignUpView.as_view(), name="signup"),
+    path('email_confirmation/', EmailConfirmationView.as_view(), name="email_confirmation"),
     path('activate/<uidb64>/<token>/', UserActivationView.as_view(), name="activate"),
     # Auditory app
     path('home/', HomeView.as_view(), name="home"),
