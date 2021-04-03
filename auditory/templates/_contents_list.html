@@ -1,22 +1,29 @@
-<div class="columns is-multiline" style="margin-top: 20px;">
+<div class="columns is-multiline" style="margin-top: 20px">
   {% for audio in audio_list %}
   <div class="column is-half">
     <div class="card m-3">
-      <div class="card-image">
-        <figure class="image is-4by3"> <img src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ audio.thumbnail }}" alt="Image"> </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="title is-4">{{ audio.name }}</p>
-            <p class="sub-title is-4">{{ audio.description }}</p>
+      <a href="{% url 'auditorium' id=audio.uuid %}" style="color: inherit">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img
+              src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ audio.thumbnail }}"
+              alt="Image"
+            />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">{{ audio.name }}</p>
+              <p class="sub-title is-4">{{ audio.description }}</p>
+            </div>
+          </div>
+          <div class="content">
+            <small>AUDIO LENGTH</small><br />
+            <small>PUBLISHED TIME & DATE</small>
           </div>
         </div>
-        <div class="content">
-          <small>AUDIO LENGTH</small><br>
-          <small>PUBLISHED TIME & DATE</small>
-        </div>
-      </div>
+      </a>
     </div>
   </div>
   {% empty %}
