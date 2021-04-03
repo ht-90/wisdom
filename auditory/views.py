@@ -47,4 +47,4 @@ def audio_upload(request):
 
 
 def success(request):
-    return HttpResponse('successfully uploaded')
+    return render(request, "upload_success.html")
