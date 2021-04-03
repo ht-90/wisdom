@@ -200,14 +200,23 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login/"
 
 # Email
-ANYMAIL = {
-    "MAILGUN_API_KEY": os.environ["MAILGUN_API"],
-    "MAILGUN_SENDER_DOMAIN": os.environ["MAILGUN_DOMAIN"]
-}
-EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
-DEFAULT_FROM_EMAIL = "example@test.com"
-SERVER_EMAIL = "server@test.com"
+if SYSTEM_ENV == "production":
+    ANYMAIL = {
+        "MAILGUN_API_KEY": os.environ["MAILGUN_API_PROD"],
+        "MAILGUN_SENDER_DOMAIN": os.environ["MAILGUN_DOMAIN_PROD"]
+    }
+    DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL_PROD"]
+    SERVER_EMAIL = os.environ["SERVER_EMAIL_PROD"]
 
+elif SYSTEM_ENV == "development" or SYSTEM_ENV == "cicd":
+    ANYMAIL = {
+        "MAILGUN_API_KEY": os.environ["MAILGUN_API_DEV"],
+        "MAILGUN_SENDER_DOMAIN": os.environ["MAILGUN_DOMAIN_DEV"]
+    }
+    DEFAULT_FROM_EMAIL = os.environ["DEFAULT_FROM_EMAIL_DEV"]
+    SERVER_EMAIL = os.environ["SERVER_EMAIL_DEV"]
+
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
 SIGNUP_EMAIL_SUBJECT = "Wisdom: user account confirmation"
 SIGNUP_MESSAGE_TEMPLATE = """
 Thank you for signing up for Wisdom!

@@ -51,8 +51,10 @@ jobs:
     # Set environmental variables from Github secrets
     env:
       SYSTEM_ENV: ${{ secrets.SYSTEM_ENV }}
-      MAILGUN_API: ${{ secrets.MAILGUN_API }}
-      MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+      MAILGUN_API_DEV: ${{ secrets.MAILGUN_API }}
+      MAILGUN_DOMAIN_DEV: ${{ secrets.MAILGUN_DOMAIN }}
+      DEFAULT_FROM_EMAIL_DEV: ${{ secrets.DEFAULT_FROM_EMAIL_DEV }}
+      SERVER_EMAIL_DEV: ${{ secrets.SERVER_EMAIL_DEV }}
     steps:
       # Checkout repository
       - uses: actions/checkout@v1
