@@ -20,7 +20,7 @@
   <div>
     <audio controls>
       <source
-        src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ audio.audiofile }}"
+        src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/audio/{{ audio.audiofile }}"
         type="audio/mpeg"
       />
     </audio>
@@ -34,7 +34,31 @@
   {% endfor %}
 </div>
 <!-- Recommendations -->
-<div class="column is-3 notification">
-  <h3 class="subtitle">RECOMMENDED AUDIOS...</h3>
+<div class="column is-3">
+  <div>
+    <h3 class="subtitle">RECOMMENDED AUDIOS</h3>
+  </div>
+  <hr>
+  {% for other_audio in other_audios %}
+  <a href="{% url 'auditorium' id=other_audio.uuid %}">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img
+            src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/thumbnail/{{ other_audio.thumbnail }}"
+            alt="Image"
+          />
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="subtitle is-5">{{ other_audio.name }}</p>
+      </div>
+    </article>
+  </a>
+  <hr>
+  {% empty %}
+  <p>No other audios available...</p>
+  {% endfor %}
+  </div>
 </div>
 {% endblock %}

@@ -40,8 +40,13 @@ urlpatterns = [
 ]
 
 # Add media storage paths
-if settings.DEBUG == "True":
+if settings.DEBUG is True:
     urlpatterns += static(
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT
     )
+
+# Error pages
+handler403 = "wisdom.views.handle_403"
+handler404 = "wisdom.views.handle_404"
+handler500 = "wisdom.views.handle_500"
