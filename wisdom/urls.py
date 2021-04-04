@@ -40,7 +40,7 @@ urlpatterns = [
 ]
 
 # Add media storage paths
-if settings.DEBUG is True:
+if settings.DEBUG == "True":
     urlpatterns += static(
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT
