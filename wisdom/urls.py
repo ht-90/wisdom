@@ -45,3 +45,8 @@ if settings.DEBUG is True:
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT
     )
+
+# Error pages
+handler403 = "wisdom.views.handle_403"
+handler404 = "wisdom.views.handle_404"
+handler500 = "wisdom.views.handle_500"
