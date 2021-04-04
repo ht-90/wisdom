@@ -40,7 +40,7 @@
   </div>
   <hr>
   {% for other_audio in other_audios %}
-  <a href="#">
+  <a href="{% url 'auditorium' id=other_audio.uuid %}">
     <article class="media">
       <div class="media-left">
         <figure class="image is-48x48">
