@@ -2,3 +2,7 @@ html, body {
     margin: 0px;
     padding: 0px;
 }
+
+.audio-player {
+    width: 100%;
+}
