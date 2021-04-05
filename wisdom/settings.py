@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dotenv
 import dj_database_url
+import mimetypes
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -161,9 +162,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+mimetypes.add_type('text/css', '.css', True)
 
+STATIC_URL = '/static/'
+if SYSTEM_ENV == "production":
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+else:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 
 # Audio file storage
 if SYSTEM_ENV == "production":
