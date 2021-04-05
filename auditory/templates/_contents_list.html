@@ -14,8 +14,16 @@
         <div class="card-content">
           <div class="media">
             <div class="media-content">
+              {% if audio.name|length <= 30 %}
               <p class="title is-4">{{ audio.name }}</p>
+              {% else %}
+              <p class="title is-4">{{ audio.name|slice:27 }}...</p>
+              {% endif %}
+              {% if audio.description|length <= 100 %}
               <p class="sub-title is-4">{{ audio.description }}</p>
+              {% else %}
+              <p class="sub-title is-4">{{ audio.description|slice:97 }}...</p>
+              {% endif %}
             </div>
           </div>
           <div class="content">

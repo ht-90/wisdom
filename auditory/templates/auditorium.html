@@ -6,9 +6,9 @@
   <!-- Player -->
   <div class="media">
     <div class="media-left">
-      <figure class="image is-48x48">
+      <figure class="image is-128x128">
         <img
-          src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/thumbnail/{{ audio.thumbnail }}"
+          src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ audio.thumbnail }}"
           alt="Image"
         />
       </figure>
@@ -17,16 +17,18 @@
       <h2 class="title">{{ audio.name }}</h2>
     </div>
   </div>
-  <div>
+  <div class="audio-player">
     <audio controls>
       <source
-        src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/audio/{{ audio.audiofile }}"
+        src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ audio.audiofile }}"
         type="audio/mpeg"
       />
     </audio>
   </div>
   <!-- Description -->
   <div class="notification">
+    <p class="subtitle is-5">Description</p>
+    <hr>
     <p>{{ audio.description }}</p>
   </div>
   {% empty %}
@@ -45,7 +47,7 @@
       <div class="media-left">
         <figure class="image is-48x48">
           <img
-            src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/thumbnail/{{ other_audio.thumbnail }}"
+            src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ other_audio.thumbnail }}"
             alt="Image"
           />
         </figure>
