@@ -2,9 +2,9 @@ name: wisdom-ci
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, deploy-heroku ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop, deploy-heroku ]
 
 jobs:
 
