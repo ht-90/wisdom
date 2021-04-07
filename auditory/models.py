@@ -34,6 +34,12 @@ class Audio(models.Model):
             validate_file_size,
         ]
     )
+    author = models.CharField(
+        max_length=30,
+        blank=True,
+        null=True,
+        default="Not Available",
+    )
 
     def __str__(self):
         return self.name
