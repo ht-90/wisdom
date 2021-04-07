@@ -74,6 +74,9 @@
     </p>
   </div>
   {% endif %}
+  <!-- error messages -->
+  {% include 'registration/_form_error.html' %}
+  <!-- signup page only -->
   <div class="field">
     <input class="button is-info" type="submit" value="{{ submit_label }}"></button>
   </div>
