@@ -1,7 +1,8 @@
 from django.db import models
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 import uuid
+import mutagen
 
 from .validators import validate_file_extension, validate_file_size
 
@@ -40,9 +41,24 @@ class Audio(models.Model):
         null=True,
         default="Not Available",
     )
+    duration = models.IntegerField(
+        blank=True,
+        null=True,
+        default=1
+    )
 
     def __str__(self):
         return self.name
+
+
+@receiver(pre_save, sender=Audio)
+def audio_duration_reader(sender, instance, **kwargs):
+    """Update auido duration value before saving audio object"""
+    # Read audio file metadata
+    audio_info = mutagen.File(instance.audiofile).info
+
+    # Update audio duration field value
+    instance.duration = int(audio_info.length)
 
 
 @receiver(post_delete, sender=Audio)
