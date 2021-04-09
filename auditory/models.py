@@ -46,6 +46,12 @@ class Audio(models.Model):
         null=True,
         default=1
     )
+    uploaded = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+        blank=False,
+        null=True,
+    )
 
     def __str__(self):
         return self.name
