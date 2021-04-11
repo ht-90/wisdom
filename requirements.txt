@@ -15,6 +15,9 @@ gunicorn
 # image processor
 Pillow
 
+# audio tagging
+mutagen
+
 # config
 python-dotenv
 
