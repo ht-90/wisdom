@@ -1,10 +1,14 @@
 from django.db import models
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
+import logging
 import uuid
 import mutagen
 
 from .validators import validate_file_extension, validate_file_size
+
+
+logger = logging.getLogger(__name__)
 
 
 class Audio(models.Model):
@@ -68,19 +72,23 @@ def audio_duration_reader(sender, instance, **kwargs):
         instance.duration = int(audio_info.length)
 
     except Exception as e:
-        print(e)
+        logger.exception(e)
 
 
 @receiver(post_delete, sender=Audio)
 def audio_post_delete_handler(sender, **kwargs):
     """Delete audio and thumbnail files on object deletion"""
-    # Get Audio instance
-    audio = kwargs["instance"]
+    try:
+        # Get Audio instance
+        audio = kwargs["instance"]
 
-    # Get path and name of audio and thumbnail files
-    audio_storage, audio_name = audio.audiofile.storage, audio.audiofile.name
-    thumbnail_storage, thumbnail_name = audio.thumbnail.storage, audio.thumbnail.name
+        # Get path and name of audio and thumbnail files
+        audio_storage, audio_name = audio.audiofile.storage, audio.audiofile.name
+        thumbnail_storage, thumbnail_name = audio.thumbnail.storage, audio.thumbnail.name
 
-    # Delete files in storage
-    audio_storage.delete(audio_name)
-    thumbnail_storage.delete(thumbnail_name)
+        # Delete files in storage
+        audio_storage.delete(audio_name)
+        thumbnail_storage.delete(thumbnail_name)
+
+    except Exception as e:
+        logging.exception(e)
