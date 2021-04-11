@@ -15,6 +15,8 @@
     </div>
     <div class="media-content">
       <h2 class="title">{{ audio.name }}</h2>
+      <p class="is-size-6">By: {{ audio.author }}</p>
+      <p class="is-size-6">{{ audio.uploaded }}</p>
     </div>
   </div>
   <div class="audio-player">
@@ -54,6 +56,8 @@
       </div>
       <div class="media-content">
         <p class="subtitle is-5">{{ other_audio.name }}</p>
+        <p class="subtitle is-7">{{ other_audio.author }}</p>
+        <p class="subtitle is-7">{{ other_audio.uploaded }}</p>
       </div>
     </article>
   </a>
