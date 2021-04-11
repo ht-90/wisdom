@@ -60,11 +60,15 @@ class Audio(models.Model):
 @receiver(pre_save, sender=Audio)
 def audio_duration_reader(sender, instance, **kwargs):
     """Update auido duration value before saving audio object"""
-    # Read audio file metadata
-    audio_info = mutagen.File(instance.audiofile).info
+    try:
+        # Read audio file metadata
+        audio_info = mutagen.File(instance.audiofile).info
 
-    # Update audio duration field value
-    instance.duration = int(audio_info.length)
+        # Update audio duration field value
+        instance.duration = int(audio_info.length)
+
+    except Exception as e:
+        print(e)
 
 
 @receiver(post_delete, sender=Audio)
