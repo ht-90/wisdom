@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% block main %}
-<form class="column is-three-fifths is-offset-one-fifth" method="POST" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button class="button is-info" type="submit">Upload</button>
-</form>
+<div class="column has-text-centered is-half">
+  <form class="column is-three-fifths is-offset-one-fifth" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button is-info" type="submit">Upload</button>
+  </form>
+</div>
 {% endblock %}
