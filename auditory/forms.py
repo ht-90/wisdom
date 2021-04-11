@@ -15,7 +15,7 @@ widget_description = forms.Textarea(attrs={
 })
 widget_thumbnail = forms.ClearableFileInput(attrs={'class': 'mb-5'})
 widget_audiofile = forms.ClearableFileInput(attrs={'class': 'mb-5'})
-widget_author =  forms.TextInput(attrs={
+widget_author = forms.TextInput(attrs={
     "class": "input is-info mb-5",
     "placeholder": "Author",
 })
