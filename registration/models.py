@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 
 
 class User(AbstractUser):
+    id = models.AutoField(primary_key=True)
     email = models.EmailField("email_address", unique=True)
 
     def get_absolute_url(self):
