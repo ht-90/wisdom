@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="wisdom",
-    version="0.0.1",
+    version="0.1.0",
     author="ht-90",
     author_email="",
     description="Wisdom - audio platform to share your wisdom",
@@ -23,9 +23,13 @@ setuptools.setup(
         "django-storages",
         "boto3",
         "python-dotenv",
+        "mutagen",
+        "Pillow",
     ],
     classifiers=[
+        "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
+        "Framework :: Django :: 3.1",
         "License :: OSI Approved :: MIT License",
     ],
     include_package_data=True,
