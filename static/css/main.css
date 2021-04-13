@@ -1,6 +1,13 @@
-html, body {
-    margin: 0px;
-    padding: 0px;
+body {
+  margin: 0px;
+  padding: 0px;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 1.0),
+    rgba(255, 255, 255, 1.0) 49px,
+    rgba(175, 200, 225, .3) 49px,
+    rgba(175, 200, 225, .3) 50px
+  );
 }
 
 .audio-player {
