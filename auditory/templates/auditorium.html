@@ -4,7 +4,7 @@
 <div class="column has-text-centered is-7">
   {% for audio in audio_list %}
   <!-- Player -->
-  <div class="media">
+  <div class="media p-3 audio-meta">
     <div class="media-left">
       <figure class="image is-128x128">
         <img
@@ -13,14 +13,14 @@
         />
       </figure>
     </div>
-    <div class="media-content">
+    <div class="media-content p-2 m-2 has-background-white">
       <h2 class="title">{{ audio.name }}</h2>
       <p class="is-size-6">By: {{ audio.author }}</p>
       <p class="is-size-6">{{ audio.uploaded }}</p>
     </div>
   </div>
-  <div class="audio-player">
-    <audio controls>
+  <div>
+    <audio controls class="audio-player">
       <source
         src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ audio.audiofile }}"
         type="audio/mpeg"
@@ -28,7 +28,7 @@
     </audio>
   </div>
   <!-- Description -->
-  <div class="notification">
+  <div class="notification has-background-white">
     <p class="subtitle is-5">Description</p>
     <hr>
     <p>{{ audio.description }}</p>
@@ -38,7 +38,7 @@
   {% endfor %}
 </div>
 <!-- Recommendations -->
-<div class="column is-3">
+<div class="column is-3 p-3 recommended">
   <div>
     <h3 class="subtitle">RECOMMENDED AUDIOS</h3>
   </div>

@@ -1,41 +1,44 @@
-<div class="columns is-multiline" style="margin-top: 20px">
-  {% for audio in audio_list %}
-  <div class="column is-half">
-    <div class="card m-3">
-      <a href="{% url 'auditorium' id=audio.uuid %}" style="color: inherit">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img
-              src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ audio.thumbnail }}"
-              alt="Image"
-            />
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              {% if audio.name|length <= 30 %}
-              <p class="title is-4">{{ audio.name }}</p>
-              {% else %}
-              <p class="title is-4">{{ audio.name|slice:27 }}...</p>
-              {% endif %}
-              {% if audio.description|length <= 100 %}
-              <p class="sub-title is-4">{{ audio.description }}</p>
-              {% else %}
-              <p class="sub-title is-4">{{ audio.description|slice:97 }}...</p>
-              {% endif %}
+<div class="section has-background-white">
+  <p class="subtitle is-3">Audio Contents</p>
+  <div class="columns is-multiline">
+    {% for audio in audio_list %}
+    <div class="column">
+      <div class="card m-3">
+        <a href="{% url 'auditorium' id=audio.uuid %}" style="color: inherit">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img
+                src="https://s3-ap-southeast-2.amazonaws.com/wisdom-storage/{{ audio.thumbnail }}"
+                alt="Image"
+              />
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                {% if audio.name|length <= 30 %}
+                <p class="title is-4">{{ audio.name }}</p>
+                {% else %}
+                <p class="title is-4">{{ audio.name|slice:27 }}...</p>
+                {% endif %}
+                {% if audio.description|length <= 100 %}
+                <p class="sub-title is-4">{{ audio.description }}</p>
+                {% else %}
+                <p class="sub-title is-4">{{ audio.description|slice:97 }}...</p>
+                {% endif %}
+              </div>
+            </div>
+            <div class="content">
+              <small>{{ audio.author }}</small><br />
+              <small>{{ audio.duration }} sec</small><br />
+              <small>{{ audio.uploaded }}</small>
             </div>
           </div>
-          <div class="content">
-            <small>{{ audio.author }}</small><br />
-            <small>{{ audio.duration }} sec</small><br />
-            <small>{{ audio.uploaded }}</small>
-          </div>
-        </div>
-      </a>
+        </a>
+      </div>
     </div>
+    {% empty %}
+    <p>Sorry no audio is available at the moment...</p>
+    {% endfor %}
   </div>
-  {% empty %}
-  <p>Sorry no audio is available at the moment...</p>
-  {% endfor %}
 </div>
