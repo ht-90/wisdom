@@ -182,9 +182,9 @@ mimetypes.add_type('text/css', '.css', True)
 
 STATIC_URL = '/static/'
 if SYSTEM_ENV == "production":
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 else:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Audio file storage
 if SYSTEM_ENV == "production":
