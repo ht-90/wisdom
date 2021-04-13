@@ -1,7 +1,7 @@
-<div class="columns is-multiline" style="margin-top: 20px">
-  {% for audio in audio_list %}
-  <div class="column is-half">
-    <div class="card m-3">
+<div class="section has-background-white">
+  <p class="subtitle is-3">Audio Contents</p>
+  <div class="columns is-multiline">
+    {% for audio in audio_list %}
       <a href="{% url 'auditorium' id=audio.uuid %}" style="color: inherit">
         <div class="card-image">
           <figure class="image is-4by3">
