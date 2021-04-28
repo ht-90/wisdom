@@ -9,6 +9,9 @@ psycopg2
 django-storages
 boto3
 
+# static file serving
+whitenoise
+
 # web server
 gunicorn
 
