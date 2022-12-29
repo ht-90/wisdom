@@ -1,0 +1,32 @@
+# Docker-compose yml version
+version: '3'
+
+# Container information
+services:
+
+  db:
+    container_name: postgres-wisdom
+    image: postgres:13.1
+    env_file:
+      - .env/${SYSTEM_ENV}
+    healthcheck:
+      test: [ "CMD", "pg_isready -q -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    volumes:
+      - ./db/:/var/lib/postgresql/data/
+
+  wisdom:
+    env_file:
+      - .env/${SYSTEM_ENV}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    expose:
+      - 8000
+    depends_on:
+      - db
