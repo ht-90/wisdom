@@ -136,3 +136,6 @@ dmypy.json
 
 # Postgresql
 db
+
+# macos
+.DS_Store
