@@ -111,7 +111,14 @@ WSGI_APPLICATION = 'wisdom.wsgi.application'
 
 if SYSTEM_ENV == "production" or SYSTEM_ENV == "development":
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600),
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['POSTGRES_DB'],
+            'USER': os.environ['POSTGRES_USER'],
+            'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
 
 elif SYSTEM_ENV == 'cicd':
